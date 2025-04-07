@@ -9,7 +9,7 @@ cd SpaJoint/
 ```
 2. create environment
 ```
-conda create -n SpaJoint python=3.8.8
+conda create -n SpaJoint python=3.8.10
 conda activate SpaJoint
 ```
 3. install pytorch
