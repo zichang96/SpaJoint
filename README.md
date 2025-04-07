@@ -4,7 +4,7 @@ SpaJoint is a transfer learning method that integrates gene expression derived f
 # Installation
 1. clone repository
 ```
-git clone https://github.com/zichang96/SpaJoint
+git clone https://github.com/zichang96/SpaJoint.git
 cd SpaJoint/
 ```
 2. create environment
