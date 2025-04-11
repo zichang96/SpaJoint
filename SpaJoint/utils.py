@@ -221,11 +221,9 @@ def filter_with_overlap_gene(adata, adata_sc):
     return adata, adata_sc
 
 def preprocess(adata):
-    sc.pp.highly_variable_genes(adata, flavor="seurat_v3", n_top_genes=2000)
     sc.pp.normalize_total(adata, target_sum=1e4)
     sc.pp.log1p(adata) #check data (gene counts)
-    #sc.pp.scale(adata, zero_center=False, max_value=10)#zero_center=True,needed? sparse/dense
-    
+    sc.pp.highly_variable_genes(adata, flavor="seurat_v3", n_top_genes=2000)
     return adata
     
 def np_unranked_unique(nparray):
