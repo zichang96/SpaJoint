@@ -7,7 +7,7 @@ import scanpy as sc
 import pandas as pd 
 from SpaJoint.utils import ReferenceDataSet,InferenceDataSet_stage
 from SpaJoint.utils import preprocess,filter_with_overlap_gene, np_unranked_unique,def_cycle,save_checkpoint
-from SpaJoint.model import Net_cell,Net_encoder
+from SpaJoint.model import Net_cell, Net_encoder
 from torch.autograd import Variable
 from SpaJoint.loss import L1regularization, CellLoss, EncodingLoss
 import torch.optim as optim
@@ -290,8 +290,8 @@ class spaJoint:
 
 if __name__=='__main__':
 
-    ref_adata = sc.read("./output/ref_adata.h5ad")
-    inf_adata = sc.read("./output/inf_adata.h5ad")
+    ref_adata = sc.read("./example/scRNA.h5ad")
+    inf_adata = sc.read("./example/ST.h5ad")
 
     map_dict = dict(zip(ref_adata.obs["CellType"], ref_adata.obs["CellType"].cat.codes))
     ref_celltype_set= set(ref_adata.obs["CellType"].value_counts().index)
