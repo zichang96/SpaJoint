@@ -1,15 +1,15 @@
 import os 
-from SpaJoint.logger import create_logger   
+from logger import create_logger   
 import torch
 import os
 import pandas as pd 
 import scanpy as sc 
 import pandas as pd 
-from SpaJoint.utils import ReferenceDataSet,InferenceDataSet_stage
-from SpaJoint.utils import preprocess,filter_with_overlap_gene, np_unranked_unique,def_cycle,save_checkpoint
-from SpaJoint.model import Net_cell, Net_encoder
+from utils import ReferenceDataSet,InferenceDataSet_stage
+from utils import preprocess,filter_with_overlap_gene, np_unranked_unique,def_cycle,save_checkpoint
+from model import Net_cell, Net_encoder
 from torch.autograd import Variable
-from SpaJoint.loss import L1regularization, CellLoss, EncodingLoss
+from loss import L1regularization, CellLoss, EncodingLoss
 import torch.optim as optim
 import random
 from scipy.linalg import norm
@@ -85,7 +85,7 @@ class spaJoint:
         self.log = create_logger('',fh=self.save_dir+"/"+'log.txt')# create log file
         if(self.verbose):
             self.log.info("Create log file....") # write log information
-            self.log.info("Create scJoint Object Done....") 
+            self.log.info("Create SpaJoint Object Done....") 
 
         self.training_iters =int(self.inf_ds.shape[0]/self.batch_size)
     
@@ -209,7 +209,7 @@ class spaJoint:
                     'model_cell_state_dict': self.model_cell.state_dict(),
                     'model_encoding_state_dict': self.model_encoder.state_dict(),
                     'optimizer': self.optimizer_cell.state_dict()            
-                },save_dir= self.save_dir,filename = "stage1_checkpoint.pth.tar")
+                },save_dir= self.save_dir,filename = "stage_checkpoint.pth.tar")
                 
         else:
             if os.path.isfile(ckpt_path):
@@ -222,7 +222,7 @@ class spaJoint:
         end_time = time()
         print("trainging stage cost {}s".format(end_time-start_time))
     
-        # write embeddings for traning stage1
+        # write embeddings for traning stage
         ref_emb,ref_cell_pred = self.predict_ref_stage(self.ref_testloader)
         self.ref_ds.obsm["emb"] =ref_emb
         self.ref_ds.obsm["cell_pred"]=ref_cell_pred
