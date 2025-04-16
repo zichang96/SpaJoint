@@ -123,13 +123,13 @@ class ReferenceDataSet(data.Dataset):
         if self.train: # random select sample
             # get sc data            
             rand_idx = random.randint(0, self.sample_num - 1)
-            in_data = np.array(self.ref_data[rand_idx].todense()) #.todense()
+            in_data = np.array(self.ref_data[rand_idx]) #.todense()
             #in_data = in_data.reshape((1, self.input_size))
             in_label = self.labels[rand_idx]
             return in_data, in_label
 
         else: # select sample by sequence
-            in_data = np.array(self.ref_data[index].todense())    #.todense()       
+            in_data = np.array(self.ref_data[index])    #.todense()       
             #in_data = in_data.reshape((1, self.input_size))
             in_label = self.labels[index]
  
@@ -224,6 +224,7 @@ def preprocess(adata):
     sc.pp.normalize_total(adata, target_sum=1e4)
     sc.pp.log1p(adata) #check data (gene counts)
     sc.pp.highly_variable_genes(adata, flavor="seurat_v3", n_top_genes=2000)
+    
     return adata
     
 def np_unranked_unique(nparray):
