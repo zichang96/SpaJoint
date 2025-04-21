@@ -2,7 +2,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15230712.svg)](https://doi.org/10.5281/zenodo.15230712)
 
 SpaJoint: a transfer learning method for spatial transcriptomics deconvolution.\
-SpaJoint is a transfer learning method that integrates gene expression derived from single-cell RNA sequencing (scRNA-seq) and spatial transcriptomics with the spatial correlation across different tissue locations. 
+SpaJoint is a transfer learning method that integrates gene expression derived from single-cell RNA sequencing (scRNA-seq) and spatial transcriptomics (ST) featuring spatial correlation across different locations.
 # Installation
 1. clone repository
 ```
